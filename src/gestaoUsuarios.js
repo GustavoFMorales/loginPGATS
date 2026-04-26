@@ -22,14 +22,14 @@ const usuarios = [
   },
 ];
 
-export const login = (usuario, senha) => {
-    if(!usuario || usuario.trim() === ''){
-        throw new Error('O nome do usuário não foi informado');
+export const login = (email, senha) => {
+    if(!email || email.trim() === ''){
+        throw new Error('O e-mail não foi informado');
     } else if(!senha || senha.trim() === ''){
       throw new Error('A senha não foi informado');
     }
     for(let i = 0; i < usuarios.length; i++){
-        if(usuarios[i].nome === usuario){
+        if(usuarios[i].email === email){
             if(usuarios[i].senha !== senha){
                 throw new Error('Senha Incorreta');
             } else if(usuarios[i].expirado === true){
@@ -42,4 +42,4 @@ export const login = (usuario, senha) => {
     throw new Error('Usuário não encontrado');
 };
 
-console.log(login('Matheus','Ab23456'))
+console.log(login('gustavo@pgats.com.br','AA654321'))
