@@ -67,12 +67,12 @@ describe("Login de usuário", () => {
   });
   it("Deve retornar erro quando a senha não for informado", () => {
     const email = "gustavo@pgats.com.br";
-    const senha = "AA654321";
-    const mensagemDeErro = "O e-mail não foi informado";
+    const senha = "";
+    const mensagemDeErro = "A senha não foi informado";
 
     assert.throws(
       () => {
-        login();
+        login(email, senha);
       },
       {
         message: mensagemDeErro,
