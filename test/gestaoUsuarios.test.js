@@ -10,5 +10,20 @@ describe('Login de usuário', () => {
         const validaLogin = login(email,senha);
 
         assert.equal(validaLogin, mensagemDeSucesso)
+    });
+    it('Deve retornar erro ao tentar login com senha incorreta', () => {
+        const email = "julio@pgats.com.br";
+        const senha = "AA123456";
+        const mensagemDeErro = "Senha Incorreta"
+
+        assert.throws(
+            () => {
+                login(email, senha)
+            },
+            {
+                message: mensagemDeErro 
+            }
+        )
+
     })
 })
