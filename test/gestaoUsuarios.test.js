@@ -40,6 +40,43 @@ describe("Login de usuário", () => {
     );
   });
   it("Deve retornar erro quando o usuário não for informado", () => {
-    
-  })
+    const email = "";
+    const senha = "AA654321";
+    const mensagemDeErro = "O e-mail não foi informado";
+
+    assert.throws(
+      () => {
+        login(email, senha);
+      },
+      {
+        message: mensagemDeErro,
+      },
+    );
+  });
+  it("Deve retornar erro quando o usuário não for informado", () => {
+    const mensagemDeErro = "O e-mail não foi informado";
+
+    assert.throws(
+      () => {
+        login();
+      },
+      {
+        message: mensagemDeErro,
+      },
+    );
+  });
+  it("Deve retornar erro quando a senha não for informado", () => {
+    const email = "gustavo@pgats.com.br";
+    const senha = "AA654321";
+    const mensagemDeErro = "O e-mail não foi informado";
+
+    assert.throws(
+      () => {
+        login();
+      },
+      {
+        message: mensagemDeErro,
+      },
+    );
+  });
 });
