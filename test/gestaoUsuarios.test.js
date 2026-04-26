@@ -79,4 +79,18 @@ describe("Login de usuário", () => {
       },
     );
   });
+    it("Deve retornar erro quando o usuário não for encontrado", () => {
+    const email = "cassio@pgats.com.br";
+    const senha = "aaasd344";
+    const mensagemDeErro = "Usuário não encontrado";
+
+    assert.throws(
+      () => {
+        login(email, senha);
+      },
+      {
+        message: mensagemDeErro,
+      },
+    );
+  });
 });
