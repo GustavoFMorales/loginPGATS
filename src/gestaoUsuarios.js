@@ -42,4 +42,3 @@ export const login = (email, senha) => {
     throw new Error('Usuário não encontrado');
 };
 
-console.log(login('gustavo@pgats.com.br','AA654321'))
