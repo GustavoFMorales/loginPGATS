@@ -53,7 +53,7 @@ describe("Login de usuário", () => {
       },
     );
   });
-  it("Deve retornar erro quando o usuário não for informado", () => {
+  it("Deve retornar erro quando nenhum dado for informado", () => {
     const mensagemDeErro = "O e-mail não foi informado";
 
     assert.throws(

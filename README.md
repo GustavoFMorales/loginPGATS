@@ -17,6 +17,10 @@ O projeto implementa um módulo de gestão de usuários com uma função de `log
 
 ```
 desafioLogin/
+├── mochawesome-report/
+│   ├── mochawesome.html    # Relatório visual dos testes
+│   ├── mochawesome.json    # Dados do relatório em JSON
+│   └── assets/             # Recursos estáticos do relatório
 ├── src/
 │   └── gestaoUsuarios.js   # Módulo com a lógica de login
 ├── test/
@@ -30,6 +34,7 @@ desafioLogin/
 
 - **Node.js**
 - **Mocha** — framework de testes
+- **Mochawesome** — gerador de relatórios HTML para Mocha
 - **Node:assert** — módulo nativo de asserções
 
 ## Como Executar
@@ -47,5 +52,11 @@ npm install
 ### Executar os Testes
 
 ```bash
-npx mocha
+npm test
 ```
+
+O comando executa os testes com o Mocha e gera automaticamente um relatório HTML na pasta `mochawesome-report/`.
+
+### Visualizar o Relatório
+
+Abra o arquivo `mochawesome-report/mochawesome.html` no navegador para visualizar o relatório detalhado com os resultados dos testes.
