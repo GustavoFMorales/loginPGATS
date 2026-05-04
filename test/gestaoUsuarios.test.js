@@ -11,21 +11,7 @@ describe("Login de usuário", () => {
 
     assert.equal(validaLogin, mensagemDeSucesso);
   });
-  it("Deve retornar erro ao tentar login com senha incorreta", () => {
-    const email = "julio@pgats.com.br";
-    const senha = "AA123456";
-    const mensagemDeErro = "Senha Incorreta";
-
-    assert.throws(
-      () => {
-        login(email, senha);
-      },
-      {
-        message: mensagemDeErro,
-      },
-    );
-  });
-  it("Deve retornar erro quando a credencial do usuário for inválida", () => {
+  it("Deve retornar erro quando a credencial do usuário estiver expirada", () => {
     const email = "gustavo@pgats.com.br";
     const senha = "AA654321";
     const mensagemDeErro = "Credenciais expiradas, renove suas credenciais";
@@ -79,10 +65,24 @@ describe("Login de usuário", () => {
       },
     );
   });
-    it("Deve retornar erro quando o usuário não for encontrado", () => {
+  it("Deve retornar erro quando o usuário não for encontrado", () => {
     const email = "cassio@pgats.com.br";
     const senha = "aaasd344";
     const mensagemDeErro = "Usuário não encontrado";
+
+    assert.throws(
+      () => {
+        login(email, senha);
+      },
+      {
+        message: mensagemDeErro,
+      },
+    );
+  });
+  it("Deve retornar erro ao tentar login com senha incorreta", () => {
+    const email = "julio@pgats.com.br";
+    const senha = "AA123456";
+    const mensagemDeErro = "Senha Incorreta";
 
     assert.throws(
       () => {
