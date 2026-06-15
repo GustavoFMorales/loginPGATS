@@ -1,0 +1,55 @@
+name: "Tests unitarios Login-PGATS push exec"
+
+on: 
+    push:
+        branches:
+            - main
+jobs:
+    Tests-unitarios:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: '24'
+            - name: Notificar início testes unitarios login pgats discord
+              env: 
+                 WEBHOOK: ${{secrets.DISCORD_WEBHOOK_URL}}
+              run: |
+                curl -H "Content-Type: application/json" \
+                -X POST \
+                -d "{\ "content\": \"Inicio do processo de teste unitários\"}" \
+                $WEBHOOK
+            - name: Instalando depedências
+              run: npm install
+            - name: Executando testes e2e
+              run: npm run test
+
+            - name: Publicando relatorios 
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                name: Relatório-test
+                path: mochawesome-report
+            
+            - name: Notificar sucesso via discord
+              if: success()
+              uses: sarisia/actions-status-discord@v1
+              with:
+                webhook: ${{secrets.DISCORD_WEBHOOK_URL}}
+                status: success
+                title: 'Pipeline Tets Login-PGATS concluída com sucesso'
+                description: 'Todos os testes et2 passaram'
+                color: 0x28A745
+            - name: Notificar falha no discord
+              if: failure()
+              uses: sarisia/actions-status-discord@v1
+              with:
+                webhook: ${{secrets.DISCORD_WEBHOOK_URL}}
+                status: failure
+                title: 'Pipeline test Login-PGATS falhou'
+                description: 'Um ou mais testes falharam'
+                color: 0xDC3545
+
+
+              
