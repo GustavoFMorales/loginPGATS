@@ -15,7 +15,7 @@ jobs:
               env:
                  WEBHOOK: ${{secrets.DISCORD_WEBHOOK_URL}}
               run: |
-                curl -H "Content-Type": application/json \
+                curl -H "Content-Type: application/json" \
                 -X POST \
                 -d "{\ "content\": \"Test Login-PGATS início do processo dos testes unitários\"}" \
                 $WEBHOOK
