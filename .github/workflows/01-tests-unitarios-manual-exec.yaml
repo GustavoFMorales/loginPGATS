@@ -23,6 +23,12 @@ jobs:
               run: npm install
             - name: Executando tests unitários
               run: npm run test
+            - name: Publicando relatórios
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                name: Relatorio-tests-Login-PGATS
+                path: mochawesome-report
             - name: Notificar sucesso no discord
               if: success()
               uses: sarisia/actions-status-discord@v1
