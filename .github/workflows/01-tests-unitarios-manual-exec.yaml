@@ -17,7 +17,7 @@ jobs:
               run: |
                 curl -H "Content-Type: application/json" \
                 -X POST \
-                -d "{\ "content\": \"Test Login-PGATS início do processo dos testes unitários\"}" \
+                -d "{\ "content\": \"Inicio do processo de teste unitários\"}" \
                 $WEBHOOK
             - name: Instalando dependências
               run: npm install
