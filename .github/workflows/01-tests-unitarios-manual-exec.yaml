@@ -10,9 +10,36 @@ jobs:
             - uses: actions/setup-node@v4
               with:
                 node-version: '24'
+            # Notificando o discord
+            - name: Notificar ínicio do processo via discord
+              env:
+                 WEBHOOK: ${{secrets.DISCORD_WEBHOOK_URL}}
+              run: |
+                curl -H "Content-Type": application/json \
+                -X POST \
+                -d "{\ "content\": \"Test Login-PGATS início do processo dos testes unitários\"}" \
+                $WEBHOOK
             - name: Instalando dependências
               run: npm install
             - name: Executando tests unitários
               run: npm run test
+            - name: Notificar sucesso no discord
+              if: success()
+              uses: sarisia/actions-status-discord@v1
+              with:
+                webhook: ${{secrets.DISCORD_WEBHOOK_URL}}
+                status: 'success'
+                title: 'Pipele Tets Login-PGATS concluída com sucesso'
+                description: "Todos os testes e2e passaram"
+                color: 0x28A745
+            - name: Notificar falha no discord
+              if: failure()
+              uses: sarisia/actions-status-discord@v1
+              with:
+                webhook: ${{secrets.DISCORD_WEBHOOK_URL}}
+                status: 'failure'
+                title: 'Pipeline Login-PGATS falhou'
+                description: 'Um ou mais testes falharam'
+                color: 0xDC3545
 
 
